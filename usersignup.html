@@ -1,0 +1,68 @@
+{% block body %}
+{% include 'header.html' %}
+<div class="d-flex flex-column justify-content-center w-100 h-100">
+
+
+<style>
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+{% if error == "no" %}
+<script>
+    alert("Registration Successful");
+    window.location = ("{% url 'Userlogin' %}")
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong, Try again..");
+</script>
+{% endif %}
+<style>
+
+</style>
+
+<div class="container mt-5">
+    <h2 class = "text-center" style = "color : red ; font-weight : bold ;
+     font-family : Castellar">User Signin</h2>
+<form class="container mt-4" name="signup" method="post" enctype="multipart/form-data" onsubmit="return checkpass();">
+    {% csrf_token %}
+    <label><b>First Name</b></label>
+    <input type = "text" name="fname" class="form-control" placeholder="Enter your name"required>
+     <label><b>Last Name</b></label>
+    <input type = "text" name="lname" class="form-control" placeholder="Enter your name"required>
+
+    <label><b>Email Id</b></label>
+    <input type = "email" name="email" class="form-control" placeholder="Enter your email"required>
+    <label><b>Password</b></label>
+    <input type = "password" name="pwd" class="form-control" placeholder="Enter password" required>
+    <label><b>contact</b>
+    </label><input type = "text" name="contact" class="form-control" placeholder="Enter your digit"required>
+     <label><b>Address</b>
+     </label>
+    <textarea name="address" class="form-control" placeholder="Address" required></textarea>
+    <label><b>PIC</b></label>
+    <input type="file" class="form-control" name="image"required>
+
+    <input type="submit" value="Submit" class="btn btn-primary my-2"style="width:200px">
+    </div>
+   
+</form>
+</div>
+{% endblock %}
